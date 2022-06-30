@@ -10,11 +10,3 @@ export const addMember =(name,email,address)=>
         }
     }
 }
-
-export const showData =()=>
-{
-    return{
-        type:'SHOW',
-        
-    }
-}
