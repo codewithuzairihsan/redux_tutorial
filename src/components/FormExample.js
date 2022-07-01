@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Col, Form, Row, Button, Modal } from "react-bootstrap";
+import { Col, Form, FormGroup, Row, 
+  Button, Modal, Input, Label, ModalHeader,
+  ModalBody,ModalFooter} from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addMember } from "../actions/Index";
 import Data from "./Data";
@@ -25,56 +27,59 @@ function FormExample() {
     }
     setValidated(true);
   };
-
   return (
     <>
       <div className="container" style={{ margin: "auto", width: "70%" }}>
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form  onSubmit={handleSubmit}>
           <Row className="mb-4">
-            <Form.Group as={Col} md="4" controlId="validationCustom01">
-              <Form.Label> Name</Form.Label>
-              <Form.Control
+            <Col md="4">
+            <FormGroup>
+              <Label> Name</Label>
+              <Input
+              valid={validated}
+              id="validationCustom01"
                 required
                 type="text"
                 placeholder="Name"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
+               
               />
-              <Form.Control.Feedback type="invalid">
-                please provide a valid name
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="4" controlId="validationCustom02">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
+            </FormGroup>
+            </Col>
+            <Col md="4">
+            <FormGroup >
+              <Label>Email</Label>
+              <Input
+              valid={validated}
+              id="validationCustom02"
                 required
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
-              <Form.Control.Feedback type="invalid">
-                please provide a valid email
-              </Form.Control.Feedback>
-            </Form.Group>
+            </FormGroup>
+            </Col>
           </Row>
           <Row className="mb-3">
-            <Form.Group as={Col} md="8" controlId="validationCustom03">
-              <Form.Label>Address</Form.Label>
-              <Form.Control
+            <Col md="8">
+            <FormGroup>
+              <Label>Address</Label>
+              <Input
+              valid={validated}
+              id="validationCustom03"
                 type="text"
                 placeholder="City"
                 required
                 value={address}
                 onChange={(event) => setAddress(event.target.value)}
               />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid city.
-              </Form.Control.Feedback>
-            </Form.Group>
+            </FormGroup>
+            </Col>
           </Row>
           <Button
-          variant="success"
+          color="success"
           type="submit"
             onClick={() =>
               dispatch(
@@ -82,7 +87,7 @@ function FormExample() {
                 setName(''),
                 setEmail(''),
                 setAddress(''),
-                setShow(true)
+               setShow(true)
               )
             }
           >
@@ -90,35 +95,32 @@ function FormExample() {
           </Button>
         </Form>
       </div>
-
-      <div className="showItems">
+      <div className="showItems">     
         {list.map((item, i) => {
           return (
-            <>
               <div >
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>User Data</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body key={i}>
+                <Modal isOpen={show}>
+                  <ModalHeader >
+                    User Data
+                  </ModalHeader>
+                  <ModalBody key={i}>
                     <p>Name: {item.name}</p>
                     <p>Email: {item.email}</p>
                     <p>Address: {item.address}</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="danger"  onClick={handleClose}>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="danger"  onClick={handleClose}>
                       Close
                     </Button>
-                  </Modal.Footer>
+                  </ModalFooter>
                 </Modal>
               </div>
-            </>
           );
         })}
+        </div>
         <div className="container my-4">
           <Data />
         </div>
-      </div>
     </>
   );
 }

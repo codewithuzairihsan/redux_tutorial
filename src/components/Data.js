@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table } from 'react-bootstrap'
+import {Table } from 'reactstrap'
 import {useSelector} from 'react-redux'
 
 
@@ -26,8 +26,8 @@ const Data=()=> {
                     list.map((item,i)=>
                  <tr key={i} >
                     <td> {i}</td>
-                    <td>{item.email}</td>
-                    <td >{item.name}</td>
+                    <td>{item.name}</td>
+                    <td >{item.email}</td>
                     <td>{item.address}</td>
                 
                 </tr> 
