@@ -39,7 +39,6 @@ const Data=()=> {
     :
     null
     }
-    {/* <div className="container">{props.data}</div> */}
     </>
   )
 }
