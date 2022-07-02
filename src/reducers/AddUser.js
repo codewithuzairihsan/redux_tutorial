@@ -1,14 +1,14 @@
 const initialState ={
     list: []
 }
-const addingMember =( state=initialState , action)=>
+const addingMember =(state=initialState , action)=>
 {
     switch (action.type) {
         case "ADD":
         
-        const {id, name,email,address}=action.payload;
+        const { name,email,address}=action.payload;
         
-        if(name,email, address)
+        if(name,email,address)
     {
         return{
             ...state,
@@ -16,7 +16,7 @@ const addingMember =( state=initialState , action)=>
         [
                 ...state.list,
                 { 
-                    id:id,
+
                     name:name,
                     email:email,
                     address:address

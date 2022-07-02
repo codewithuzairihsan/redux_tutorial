@@ -1,13 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import FormExample from './components/FormExample';
+import FormClass from './components/FormClass';
 const App=()=> {
   
   return (
     <>
    <div className='container'>
-      
-       <FormExample/>
+      <FormClass/>
     </div>
     </>
   );
