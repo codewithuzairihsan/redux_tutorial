@@ -1,21 +1,10 @@
 import React, { Component } from "react";
 // connect is a function of react-redux, by which we can use react-redux with class component.
 import { connect } from "react-redux";
-import {
-  Col,
-  Form,
-  FormGroup,
-  Row,
-  Button,
-  Modal,
-  Input,
-  Label,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "reactstrap";
+import { Col, Form, FormGroup, Row, Button, Input, Label } from "reactstrap";
 import { addMember } from "../actions/Index";
 import DataTable from "./DataTable";
+import ModalAlert from "./ModalAlert";
 
 class FormClass extends Component {
   constructor(props) {
@@ -28,10 +17,10 @@ class FormClass extends Component {
       address: "",
     };
   }
-// A close function to change the modal format from true to false, if it is showing it will be false after clicking this function
-  handleClose() {
+  // A close function to change the modal format from true to false, if it is showing it will be false after clicking this function
+  handleClose = () => {
     this.setState({ show: false });
-  }
+  };
   saveUser = () => {
     this.props.addMember(this.state.name, this.state.email, this.state.address);
 
@@ -101,25 +90,7 @@ class FormClass extends Component {
           </Form>
         </div>
         <div className="showItems">
-          {this.props.add.list.map((item, i) => {
-            return (
-              <div key={i}>
-                <Modal isOpen={this.state.show}>
-                  <ModalHeader>User Data</ModalHeader>
-                  <ModalBody>
-                    <p>Name: {item.name}</p>
-                    <p>Email: {item.email}</p>
-                    <p>Address: {item.address}</p>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button color="danger" onClick={() => this.handleClose()}>
-                      Close
-                    </Button>
-                  </ModalFooter>
-                </Modal>
-              </div>
-            );
-          })}
+          <ModalAlert show={this.state.show} close={this.handleClose} />
         </div>
         <div className="container my-4">
           <DataTable />
