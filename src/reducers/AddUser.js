@@ -6,29 +6,39 @@ const addingMember =(state=initialState , action)=>
     switch (action.type) {
         case "ADD":
         
-        const { name,email,address}=action.payload;
-        
-        if(name,email,address)
-    {
+        const {id,name,email,countries,cities,address}=action.payload;
+
         return{
+            
             ...state,
             list:
-        [
+        [   
+             
                 ...state.list,
-                { 
-
+                {   
+                    id:id,
                     name:name,
                     email:email,
-                    address:address
+                    countries:countries,
+                    cities:cities,
+                    address:address,
             }
         ]
      }
-        
-    }break;
+    case "CLEAR":
+     const newList= state.list.filter((item)=> item.id !== action.id);
+    return{
+       
+            ...state,
+            list:newList,
             
-    
+        }
+
+
         default: return state;
            
     }
 }
+
+
 export default addingMember;
